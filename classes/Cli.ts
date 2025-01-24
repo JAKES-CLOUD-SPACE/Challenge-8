@@ -252,6 +252,8 @@ class Cli {
         },
       ])
       .then((answers) => {
+        const frontWheel = new Wheel(parseInt(answers.frontWheelDiameter), answers.frontWheelBrand);
+    const rearWheel = new Wheel(parseInt(answers.rearWheelDiameter), answers.rearWheelBrand);
         // TODO: Use the answers object to pass the required properties to the Motorbike constructor        done
         // TODO: push the motorbike to the vehicles array                       done
         // TODO: set the selectedVehicleVin to the vin of the motorbike         done
@@ -261,14 +263,14 @@ class Cli {
           answers.color,
           answers.make,
           answers.model,
-          answers.frontWheelBrand,
-          answers.rearWheelBrand,
           parseInt(answers.year),
           parseInt(answers.weight),
           parseInt(answers.topSpeed),
-          parseInt(answers.frontWheelDiameter),
-          parseInt(answers.rearWheelDiameter),
-          []
+          [frontWheel, rearWheel],
+          answers.frontWheelDiameter,
+          answers.frontWheelBrand,
+          answers.rearWheelDiameter,
+          answers.rearWheelBrand
         );
 
         this.vehicles.push(motorbike);
@@ -420,11 +422,9 @@ class Cli {
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
         } else if (answers.action === 'Wheelie') {
         // TODO: Add logic to perform a wheelie action only if the selected vehicle is a Motorbike
-        const selectedMotorbike = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin) as Motorbike;
-        
-        // Check if the selected vehicle is a motorbike
-        if (selectedMotorbike && selectedMotorbike instanceof Motorbike) {
-          selectedMotorbike.performWheelie(); // Perform a wheelie on the selected motorbike
+        const selectedMotorbike = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin) as Motorbike | undefined;
+        if (selectedMotorbike) {
+          selectedMotorbike.performWheelie();
         } else {
           console.log("This action can only be performed by a motorbike.");
         } 
