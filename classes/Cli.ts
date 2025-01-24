@@ -334,7 +334,7 @@ class Cli {
             'Turn left',
             'Reverse',
             'Tow Vehicle',
-            'Perform Wheelie',
+            'Wheelie',
             'Select or create another vehicle',
             'Exit',
           ],
@@ -418,7 +418,7 @@ class Cli {
 
 
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
-        } else if (answers.action === 'Perform wheelie') {
+        } else if (answers.action === 'Wheelie') {
         // TODO: Add logic to perform a wheelie action only if the selected vehicle is a Motorbike
         const selectedMotorbike = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin) as Motorbike;
         
