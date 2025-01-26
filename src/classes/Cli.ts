@@ -305,15 +305,17 @@ class Cli {
           this.performActionsOnTruck(truck);
         }
         else {
-          console.log(`Towing vehicle: ${selectedVehicle.make} ${selectedVehicle.model} (VIN: ${selectedVehicle.vin})`);
           truck.tow(selectedVehicle);
+          console.log(`Towing vehicle: ${selectedVehicle.make} ${selectedVehicle.model} (VIN: ${selectedVehicle.vin})`);
           this.performActionsOnTruck(truck);
         }
       });
   }
 
   performActionsOnTruck(truck: Truck): void {
-    console.log(`Performing actions on truck ${truck.vin}`);
+    if (truck instanceof Truck) {
+      this.performActions();
+    }
   }
 
   // method to perform actions on a vehicle
@@ -334,7 +336,7 @@ class Cli {
             'Turn right',
             'Turn left',
             'Reverse',
-            'Tow Vehicle',
+            'Tow vehicle',
             'Wheelie',
             'Select or create another vehicle',
             'Exit',
@@ -406,16 +408,17 @@ class Cli {
           // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass
           //  the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again 
           // since findVehicleToTow is asynchronous.
-          const selectedVehicle = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin);
           // TODO: Add logic to perform towing action only if the selected vehicle is a Truck
+          const selectedVehicle = this.vehicles.find(
+            (vehicle) => vehicle.vin === this.selectedVehicleVin
+          );
+    
           if (selectedVehicle instanceof Truck) {
             this.findVehicleToTow(selectedVehicle);
             return;
           } else {
             console.log("This action can only be performed by a truck.");
           }
-        
-
 
 
 
