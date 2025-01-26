@@ -412,7 +412,7 @@ class Cli {
           const selectedVehicle = this.vehicles.find(
             (vehicle) => vehicle.vin === this.selectedVehicleVin
           );
-    
+
           if (selectedVehicle instanceof Truck) {
             this.findVehicleToTow(selectedVehicle);
             return;
@@ -422,18 +422,18 @@ class Cli {
 
 
 
-        // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+          // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
         } else if (answers.action === 'Wheelie') {
-        // TODO: Add logic to perform a wheelie action only if the selected vehicle is a Motorbike
-        const selectedVehicle = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin);
-        if (selectedVehicle instanceof Motorbike) {
-          selectedVehicle.performWheelie();
-        } else {
-          console.log("This action can only be performed by a motorbike.");
-        }
-        
-    
-    } else if (answers.action === 'Select or create another vehicle') {
+          // TODO: Add logic to perform a wheelie action only if the selected vehicle is a Motorbike
+          const selectedVehicle = this.vehicles.find(vehicle => vehicle.vin === this.selectedVehicleVin);
+          if (selectedVehicle instanceof Motorbike) {
+            selectedVehicle.performWheelie();
+          } else {
+            console.log("This action can only be performed by a motorbike.");
+          }
+
+
+        } else if (answers.action === 'Select or create another vehicle') {
           // start the cli to return to the initial prompt if the user wants to select or create another vehicle
           this.startCli();
           return;
